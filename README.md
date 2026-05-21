@@ -7,7 +7,7 @@ Predstavitev mojega Claude Code setup-a — skills, agenti, MCP serverji, hooks 
 ## Vsebina
 - 15 user-invocable skills
 - 11 agentov (6 custom + 5 vgrajenih)
-- 15 MCP serverjev (2 lokalna + 13 OAuth integracij)
+- 14 MCP serverjev (1 lokalni + 13 OAuth integracij)
 - 7 aktivnih Node.js projektov
 - 1 hook (Prettier auto-format)
 
