@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acenta · Claude Code Setup</title>
+<meta name="description" content="Pregled mojega Claude Code setup-a — skills, agenti, MCP serverji, hooks in projekti." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#00AFAA;
+    --teal-bright:#2EE6DF;
+    --teal-dark:#0180AE;
+    --accent:#FF0A60;
+    --accent-glow:rgba(255,10,96,.25);
+    --bg:#0A0E10;
+    --bg-2:#11171A;
+    --bg-3:#1A2226;
+    --border:rgba(255,255,255,.08);
+    --border-2:rgba(0,175,170,.25);
+    --text:#E8EEF0;
+    --muted:#8A969B;
+    --dim:#5C6A70;
+    --radius:14px;
+    --radius-lg:22px;
+    --maxw:1180px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Exo 2',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(0,175,170,.12), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255,10,96,.08), transparent 50%);
+    pointer-events:none; z-index:0;
+  }
+  a{color:var(--teal-bright);text-decoration:none}
+  code,.mono{font-family:'JetBrains Mono',monospace;font-size:.9em}
+
+  /* NAV */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,16,.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto;
+    padding:14px 24px; display:flex; align-items:center; gap:32px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+  .brand-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal)}
+  .nav-links{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .nav-links a{
+    color:var(--muted); padding:8px 14px; border-radius:8px;
+    font-size:.92rem; font-weight:600; transition:all .2s;
+  }
+  .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+
+  /* CONTAINER */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+  /* HERO */
+  .hero{padding:80px 0 60px;text-align:center}
+  .hero .eyebrow{
+    display:inline-block; padding:6px 14px; border-radius:999px;
+    background:rgba(0,175,170,.1); border:1px solid var(--border-2);
+    color:var(--teal-bright); font-size:.78rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:.14em; margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.5rem);
+    margin:0 0 20px; line-height:1.05; letter-spacing:-.03em;
+    font-weight:800;
+    background:linear-gradient(135deg,#fff 30%,var(--teal-bright) 70%,var(--accent) 110%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    font-size:1.2rem; color:var(--muted); max-width:680px;
+    margin:0 auto 40px;
+  }
+
+  /* STATS */
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:14px; max-width:840px; margin:0 auto;
+  }
+  .stat{
+    background:linear-gradient(160deg,rgba(0,175,170,.06),rgba(255,255,255,.02));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 16px;
+    transition:all .25s;
+  }
+  .stat:hover{border-color:var(--border-2);transform:translateY(-3px)}
+  .stat-num{
+    font-size:2.4rem; font-weight:800; line-height:1;
+    background:linear-gradient(135deg,var(--teal-bright),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat-label{font-size:.82rem;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+
+  /* SECTIONS */
+  section{padding:70px 0;scroll-margin-top:80px}
+  section + section{border-top:1px solid var(--border)}
+  .sec-head{margin-bottom:40px;max-width:780px}
+  .sec-eyebrow{
+    font-size:.78rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--teal); margin-bottom:10px; display:block;
+  }
+  .sec-head h2{
+    font-size:clamp(1.8rem,3.5vw,2.6rem); margin:0 0 12px;
+    letter-spacing:-.02em; font-weight:800;
+  }
+  .sec-head p{color:var(--muted);font-size:1.05rem;margin:0}
+
+  /* CARD GRIDS */
+  .grid{display:grid;gap:14px}
+  .grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .grid-2{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+
+  .card{
+    background:linear-gradient(160deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+    transition:all .25s;
+    position:relative; overflow:hidden;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0 0 auto 0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--teal),transparent);
+    opacity:0; transition:opacity .25s;
+  }
+  .card:hover{
+    border-color:var(--border-2); transform:translateY(-3px);
+    box-shadow:0 12px 32px rgba(0,175,170,.08);
+  }
+  .card:hover::before{opacity:1}
+  .card-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .card-icon{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,rgba(0,175,170,.18),rgba(0,175,170,.04));
+    border:1px solid var(--border-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem; flex-shrink:0;
+  }
+  .card-title{font-weight:700;font-size:1rem;color:var(--text);margin:0}
+  .card-cmd{
+    font-family:'JetBrains Mono',monospace; font-size:.78rem;
+    color:var(--teal-bright); margin-left:auto; opacity:.9;
+  }
+  .card-desc{color:var(--muted);font-size:.9rem;margin:0;line-height:1.55}
+  .card-tag{
+    display:inline-block; margin-top:12px; padding:3px 10px;
+    background:rgba(255,255,255,.04); border:1px solid var(--border);
+    border-radius:999px; font-size:.72rem; font-weight:600;
+    color:var(--dim); text-transform:uppercase; letter-spacing:.08em;
+  }
+  .card-tag.acenta{color:var(--teal-bright);border-color:var(--border-2);background:rgba(0,175,170,.06)}
+  .card-tag.built{color:var(--accent);border-color:rgba(255,10,96,.3);background:rgba(255,10,96,.06)}
+
+  /* CONFIG / CODE BLOCKS */
+  .config-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+  .config-card{
+    background:var(--bg-2); border:1px solid var(--border);
+    border-radius:var(--radius); padding:20px;
+  }
+  .config-path{
+    font-family:'JetBrains Mono',monospace; font-size:.82rem;
+    color:var(--teal-bright); margin-bottom:6px; word-break:break-all;
+  }
+  .config-card h4{margin:0 0 6px;font-size:.95rem;font-weight:700}
+  .config-card p{margin:0;color:var(--muted);font-size:.88rem}
+
+  /* HOOK BOX */
+  .hook-box{
+    background:linear-gradient(160deg,rgba(255,10,96,.06),rgba(0,175,170,.04));
+    border:1px solid var(--border-2); border-radius:var(--radius-lg);
+    padding:28px; max-width:720px;
+  }
+  .hook-box h3{margin:0 0 8px;font-size:1.15rem}
+  .hook-box pre{
+    background:#06090A; border:1px solid var(--border); border-radius:10px;
+    padding:14px 18px; overflow-x:auto; margin:14px 0 0;
+    font-family:'JetBrains Mono',monospace; font-size:.82rem;
+    color:var(--teal-bright);
+  }
+
+  /* PROJECT CARDS */
+  .proj-card{
+    background:linear-gradient(160deg,rgba(0,175,170,.05),rgba(255,255,255,.02));
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:24px;
+    transition:all .3s;
+  }
+  .proj-card:hover{border-color:var(--border-2);transform:translateY(-4px)}
+  .proj-card .proj-icon{font-size:1.8rem;margin-bottom:10px}
+  .proj-card h3{margin:0 0 8px;font-size:1.15rem;color:var(--text)}
+  .proj-card .proj-stack{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;
+  }
+  .proj-card .pill{
+    font-size:.7rem;font-weight:600;
+    padding:3px 9px;border-radius:999px;
+    background:rgba(255,255,255,.04);color:var(--muted);
+    border:1px solid var(--border);
+  }
+
+  /* FOOTER */
+  footer{
+    padding:50px 0 60px; border-top:1px solid var(--border);
+    text-align:center; color:var(--muted); font-size:.9rem;
+  }
+  footer a{color:var(--teal-bright)}
+  footer .footer-brand{font-weight:700;color:var(--text);font-size:1rem;margin-bottom:8px}
+
+  @media (max-width:640px){
+    .nav-links{gap:0}
+    .nav-links a{padding:6px 10px;font-size:.85rem}
+    .hero{padding:50px 0 40px}
+    section{padding:50px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-dot"></span> Claude Code · Acenta</div>
+    <div class="nav-links">
+      <a href="#pregled">Pregled</a>
+      <a href="#mcp">MCP</a>
+      <a href="#agenti">Agenti</a>
+      <a href="#skills">Skills</a>
+      <a href="#hooks">Avtomatizacija</a>
+      <a href="#projekti">Projekti</a>
+      <a href="#config">Config</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="wrap hero" id="pregled">
+  <span class="eyebrow">Moj Claude Code Setup</span>
+  <h1>Operacijski sistem za<br/>digitalno marketinško agencijo.</h1>
+  <p class="lead">
+    Skills, agenti, MCP integracije in projekti, ki sestavljajo moj vsakdanji workflow v
+    <strong style="color:var(--text)">Acenta.si</strong> — Google Ads, vsebina, ponudbe, poročila, deploy.
+  </p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">15</div><div class="stat-label">Skills</div></div>
+    <div class="stat"><div class="stat-num">11</div><div class="stat-label">Agentov</div></div>
+    <div class="stat"><div class="stat-num">15</div><div class="stat-label">MCP serverjev</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Projektov</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">Hook</div></div>
+  </div>
+</header>
+
+<!-- MCP -->
+<section id="mcp">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Integracije</span>
+      <h2>MCP Serverji</h2>
+      <p>Mostovi med Claudom in zunanjimi sistemi — od lastnih API-jev (Dokploy, Airtable) do OAuth integracij prek claude.ai.</p>
+    </div>
+    <div class="grid grid-3">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🚀</div>
+          <h3 class="card-title">Dokploy</h3>
+          <span class="card-cmd">stdio</span>
+        </div>
+        <p class="card-desc">Lasten Hetzner server (CPX22). Deploy aplikacij brez ročnih korakov v UI.</p>
+        <span class="card-tag acenta">Lokalni MCP</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">Airtable</h3>
+          <span class="card-cmd">stdio</span>
+        </div>
+        <p class="card-desc">Branje in pisanje v Airtable baze — uporaba za LeadScanner pipeline output.</p>
+        <span class="card-tag acenta">Lokalni MCP</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🐙</div>
+          <h3 class="card-title">GitHub</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Issues, PR-ji, branchi, releases, file management — popoln workflow brez izhoda iz Code.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📐</div>
+          <h3 class="card-title">Linear</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Issue tracking in product management — povezovanje commitov z nalogami.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📝</div>
+          <h3 class="card-title">Notion</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Dokumentacija, knowledge base, notes — dostop iz Claudovega konteksta.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🗂️</div>
+          <h3 class="card-title">Atlassian</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Jira tickets in Confluence strani za klientske projekte.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">✅</div>
+          <h3 class="card-title">Asana</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Project management — naloge, deadline-i, team workflow.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📦</div>
+          <h3 class="card-title">Box</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Cloud storage za klientske datoteke in deliverable-e.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🎨</div>
+          <h3 class="card-title">Canva</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Design assets za social media in klientske prezentacije.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">HubSpot</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">CRM, lead management in marketing automation.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">💬</div>
+          <h3 class="card-title">Intercom</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Customer support pogovori in user data.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📨</div>
+          <h3 class="card-title">Microsoft 365</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Outlook, Word, Excel — uporaba za maile in dokumente strank.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🟦</div>
+          <h3 class="card-title">monday.com</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Work management platform za klientske workflow-e.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🎬</div>
+          <h3 class="card-title">Higgsfield</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">AI video generacija za social media kampanje.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🔗</div>
+          <h3 class="card-title">META MCP</h3>
+          <span class="card-cmd">oauth</span>
+        </div>
+        <p class="card-desc">Meta Ads & Facebook/Instagram management za klientske kampanje.</p>
+        <span class="card-tag">claude.ai</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section id="agenti">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Specializirane osebnosti</span>
+      <h2>Agenti</h2>
+      <p>11 agentov z lastnim systemskim promptom in toolsetom. Custom agenti pokrivajo turizem, copywriting in Make.com; vgrajeni servirajo splošne dev naloge.</p>
+    </div>
+    <div class="grid grid-2">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">💡</div>
+          <h3 class="card-title">claude-code-advisor</h3>
+        </div>
+        <p class="card-desc">Svetuje glede Claude Code setup-a, workflow optimizacije in best practices. Predlaga izboljšave CLAUDE.md, hooks, MCP serverjev.</p>
+        <span class="card-tag acenta">Custom</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">client-brief-analyzer</h3>
+        </div>
+        <p class="card-desc">Razčleni klientske briefe in surove podatke pred generacijo vsebine. Trigger: "imam brief", "klient hoče".</p>
+        <span class="card-tag acenta">Custom</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">✍️</div>
+          <h3 class="card-title">copywriting-storytelling</h3>
+        </div>
+        <p class="card-desc">Polira osnutke v high-converting vsebino. Framework-i: Hormozi, Ogilvy, Halbert, Schwartz, Cialdini, MrBeast.</p>
+        <span class="card-tag acenta">Custom</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🏨</div>
+          <h3 class="card-title">design-turizem-sl</h3>
+        </div>
+        <p class="card-desc">UI/UX feedback za slovenske turistične strani — hoteli, terme, wellness, agencijski klienti.</p>
+        <span class="card-tag acenta">Custom</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">✨</div>
+          <h3 class="card-title">design-visionary</h3>
+        </div>
+        <p class="card-desc">World-class UI/UX improvements, design systemi in psihološka optimizacija interface-ov.</p>
+        <span class="card-tag acenta">Custom</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">⚙️</div>
+          <h3 class="card-title">make-automation-helper</h3>
+        </div>
+        <p class="card-desc">Design, debug in setup Make.com scenarijev — webhooks, moduli, JSON mapping, routerji.</p>
+        <span class="card-tag acenta">Custom</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-title">Explore</h3>
+        </div>
+        <p class="card-desc">Hitri codebase explorer — file glob, content grep, code Q&amp;A. Nastavljiva temeljitost.</p>
+        <span class="card-tag built">Vgrajen</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🗺️</div>
+          <h3 class="card-title">Plan</h3>
+        </div>
+        <p class="card-desc">Software architect agent — designira implementacijske plane in identificira kritične datoteke.</p>
+        <span class="card-tag built">Vgrajen</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🧰</div>
+          <h3 class="card-title">general-purpose</h3>
+        </div>
+        <p class="card-desc">Splošni research in multi-step task agent — uporaba ko enostavni grep/glob ni dovolj.</p>
+        <span class="card-tag built">Vgrajen</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📚</div>
+          <h3 class="card-title">claude-code-guide</h3>
+        </div>
+        <p class="card-desc">Odgovarja na vprašanja o Claude Code, Agent SDK in Anthropic API-ju.</p>
+        <span class="card-tag built">Vgrajen</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">statusline-setup</h3>
+        </div>
+        <p class="card-desc">Konfigurira Claude Code status line setting.</p>
+        <span class="card-tag built">Vgrajen</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Slash ukazi</span>
+      <h2>Skills</h2>
+      <p>15 user-invocable skills — od Acenta operative (<code>/ads</code>, <code>/ponudba</code>, <code>/design</code>) do generičnih orodij (<code>/pdf</code>, <code>/visualize</code>, <code>/continue</code>).</p>
+    </div>
+    <div class="grid grid-3">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">ads</h3>
+          <span class="card-cmd">/ads</span>
+        </div>
+        <p class="card-desc">Google Ads operativa: search terms analyzer, multi-client dashboard, tedenski monitor.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🤖</div>
+          <h3 class="card-title">auto</h3>
+          <span class="card-cmd">/auto</span>
+        </div>
+        <p class="card-desc">Avtomatizacijski wizard za scheduled taske brez Make.com. Schedule, loop, Task Scheduler, hooks.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🎨</div>
+          <h3 class="card-title">design</h3>
+          <span class="card-cmd">/design</span>
+        </div>
+        <p class="card-desc">Acenta Design System — komponente, templates, HTML deck generator za vse Acenta strani.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📄</div>
+          <h3 class="card-title">pdf</h3>
+          <span class="card-cmd">/pdf</span>
+        </div>
+        <p class="card-desc">PDF orodja — render HTML s pravilnimi page break-i, extract teksta, branding logom in footerjem.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📑</div>
+          <h3 class="card-title">ponudba</h3>
+          <span class="card-cmd">/ponudba</span>
+        </div>
+        <p class="card-desc">Iz transkripta kickoff sestanka generira ponudbo Acenta — najprej Word, nato PDF.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🔎</div>
+          <h3 class="card-title">google-ads-search</h3>
+        </div>
+        <p class="card-desc">Google Ads Search specialist — nove kampanje, optimizacije, auditi, poročila.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📈</div>
+          <h3 class="card-title">google-ads-report</h3>
+        </div>
+        <p class="card-desc">Profesionalni PDF dokumenti s strukturo Google Ads kampanje za stranke.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🏨</div>
+          <h3 class="card-title">hotel-report</h3>
+        </div>
+        <p class="card-desc">Analiza hotelskih mnenj iz Booking.com URL-jev — generira poročilo za prodajne demo-je.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">✏️</div>
+          <h3 class="card-title">prompt-writer</h3>
+        </div>
+        <p class="card-desc">Pretvori surove ideje v world-class AI prompte. Kalibrira globino glede na pomembnost.</p>
+        <span class="card-tag">Generic</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📧</div>
+          <h3 class="card-title">write-email</h3>
+        </div>
+        <p class="card-desc">Profesionalni email v slovenščini za Acenta agencijo.</p>
+        <span class="card-tag acenta">Acenta</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🧠</div>
+          <h3 class="card-title">explain-code</h3>
+        </div>
+        <p class="card-desc">Razloži kodo v slovenščini za začetnika — z analogijami in realnimi primeri.</p>
+        <span class="card-tag">Generic</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">build-survey</h3>
+        </div>
+        <p class="card-desc">Generira kompleten single-file HTML survey/quiz iz markdown vprašanj.</p>
+        <span class="card-tag">Generic</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">🚀</div>
+          <h3 class="card-title">devtakeover</h3>
+        </div>
+        <p class="card-desc">Full project development takeover — audit, scaffold, agenti, skills, hooks, HTML guide. En ukaz.</p>
+        <span class="card-tag">Generic</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">visualize</h3>
+        </div>
+        <p class="card-desc">Generira vizualizacije iz različnih virov podatkov.</p>
+        <span class="card-tag">Generic</span>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon">💾</div>
+          <h3 class="card-title">continue</h3>
+        </div>
+        <p class="card-desc">Generira continue prompt datoteko za nadaljevanje dela v novi sesiji ko zmanjkuje konteksta.</p>
+        <span class="card-tag">Generic</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOOKS / AUTOMATION -->
+<section id="hooks">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Avtomatika</span>
+      <h2>Hooks &amp; Memory</h2>
+      <p>Tihi pomočniki — formatiranje datotek po vsakem urejanju in trajna memorija med sesijami.</p>
+    </div>
+
+    <div class="hook-box" style="margin-bottom:24px">
+      <h3>🔧 PostToolUse Hook · Prettier auto-format</h3>
+      <p style="margin:0;color:var(--muted);font-size:.95rem">
+        Po vsakem <code>Write</code> ali <code>Edit</code> tool calu se zažene Prettier in formatira datoteko. Brez ročnega klicanja, brez čakanja.
+      </p>
+<pre>"hooks": {
+  "postToolUse": [{
+    "matcher": "Write|Edit",
+    "command": "prettier --write \"$FILE_PATH\""
+  }]
+}</pre>
+    </div>
+
+    <div class="hook-box">
+      <h3>🧠 Auto-Memory sistem</h3>
+      <p style="margin:0;color:var(--muted);font-size:.95rem">
+        Trajna memorija preko sesij v <code>~/.claude/projects/.../memory/</code>. Indeks v <code>MEMORY.md</code>,
+        vsaka memorija lasten <code>.md</code> file s frontmatter (<em>user · feedback · project · reference</em>).
+        Trenutno ~20 vnosov: jezikovne preference, infrastruktura (Hetzner, Dokploy), trenutni klienti, projektne odločitve.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projekti">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Tisto, kar dejansko gradim</span>
+      <h2>Projekti</h2>
+      <p>7 aktivnih Node.js projektov — od scraping pipeline-ov do deploy-anih web app-ov na Hetzner serverju.</p>
+    </div>
+    <div class="grid grid-2">
+
+      <div class="proj-card">
+        <div class="proj-icon">🎣</div>
+        <h3>LeadScanner</h3>
+        <p class="card-desc">Avtomatiziran pipeline ki najde hotele v SI/Istri, oceni digitalno prisotnost 0–100, generira personalizirane prodajne emaile s Claude Haiku.</p>
+        <div class="proj-stack">
+          <span class="pill">Node.js</span><span class="pill">Google Places</span>
+          <span class="pill">Apollo.io</span><span class="pill">Claude Haiku</span>
+          <span class="pill">Airtable</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🏨</div>
+        <h3>Hotel Analyzer</h3>
+        <p class="card-desc">AI analiza hotelskih mnenj iz Booking.com, Google Reviews, TripAdvisor. Sales demo za hotelske kliente.</p>
+        <div class="proj-stack">
+          <span class="pill">Express</span><span class="pill">Outscraper</span>
+          <span class="pill">Claude API</span><span class="pill">Puppeteer</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">📄</div>
+        <h3>Ponudbe</h3>
+        <p class="card-desc">Express web app na <code>ponudbe.deploy.acenta.si</code>. Generira ponudbe iz kickoff transkriptov.</p>
+        <div class="proj-stack">
+          <span class="pill">Express</span><span class="pill">Dokploy</span>
+          <span class="pill">DOCX→PDF</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">📊</div>
+        <h3>Ads Tools</h3>
+        <p class="card-desc">Google Ads operativa: search terms analyzer, multi-client dashboard, tedenski monitor s primerjavo prejšnjega tedna.</p>
+        <div class="proj-stack">
+          <span class="pill">Node.js</span><span class="pill">CSV pipeline</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🎨</div>
+        <h3>Design System</h3>
+        <p class="card-desc">Single source of truth (<code>acenta-design.css</code> + 7 komponent) za vse Acenta HTML strani in prezentacije.</p>
+        <div class="proj-stack">
+          <span class="pill">CSS</span><span class="pill">HTML templates</span>
+          <span class="pill">Exo 2</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">📬</div>
+        <h3>Acenta Reports</h3>
+        <p class="card-desc">Email service za marketing poročila ZUNTI (Meta + Google). MVP končan z mock daty, čaka API tokene za produkcijo.</p>
+        <div class="proj-stack">
+          <span class="pill">Node.js</span><span class="pill">Meta Ads API</span>
+          <span class="pill">Google Ads API</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">📋</div>
+        <h3>Baza Vprašalnikov</h3>
+        <p class="card-desc">Postgres + Express webhook za "Moj AI načrt" delavnico. Admin panel na <code>nacrt-admin.deploy.acenta.si</code>.</p>
+        <div class="proj-stack">
+          <span class="pill">Postgres</span><span class="pill">Express</span>
+          <span class="pill">Dokploy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONFIG -->
+<section id="config">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Konfiguracija</span>
+      <h2>Kje živi setup</h2>
+      <p>Strukturirani <code>.md</code> fajli s CLAUDE.md hierarhijo — global, agencija, projekt, pravilo.</p>
+    </div>
+    <div class="config-grid">
+
+      <div class="config-card">
+        <div class="config-path">~/.claude/CLAUDE.md</div>
+        <h4>Globalna pravila</h4>
+        <p>Tech environment, OS, jezikovni privzetki, gotcha-ji (Windows paths, OneDrive sync, API rate limits).</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">~/.claude/settings.json</div>
+        <h4>Model + Hooks + MCP</h4>
+        <p>Model: <code>claude-opus-4-7</code>. Prettier hook, Dokploy MCP server, GitHub PAT.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">~/OneDrive/Desktop/context.md</div>
+        <h4>O meni</h4>
+        <p>Kdo sem, kako naj me Claude uči, kako naj ureja prozo, splošni delovni stil.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">~/OneDrive/Desktop/acenta/CLAUDE.md</div>
+        <h4>Agencijska pravila</h4>
+        <p>O Acenti, vsesplošna pravila za kliente, jeziki, format outputa, prepovedi.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">acenta/projects/*/CLAUDE.md</div>
+        <h4>Projektna pravila</h4>
+        <p>Per-projekt: LeadScanner (pipeline, module pattern), Hotel Analyzer (tech stack), Ponudbe.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">projekt/.claude/rules/*.md</div>
+        <h4>Granularna pravila</h4>
+        <p>Module pattern, Airtable fields, scoring, API safety, env vars — referencirana iz CLAUDE.md.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">~/.claude/agents/*.md</div>
+        <h4>Custom agenti</h4>
+        <p>6 lastnih agentov: design-turizem-sl, copywriting-storytelling, client-brief-analyzer, in več.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">~/.claude/skills/*/SKILL.md</div>
+        <h4>Skill paketi</h4>
+        <p>Vsak skill v lastni mapi s SKILL.md + assets. Najdaljši: <code>devtakeover</code>, <code>ads</code>, <code>design</code>.</p>
+      </div>
+
+      <div class="config-card">
+        <div class="config-path">.../memory/MEMORY.md</div>
+        <h4>Auto-memorija</h4>
+        <p>Indeks + ~20 individualnih memory fajlov: jezikovne preference, infra IP-ji, klienti, projekti.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand">Acenta.si · Digitalni marketing</div>
+    <p>Setup razvit za delo z Acenta klienti — turizem, gostinstvo, e-commerce, avto industrija.<br/>
+    Model: <code>claude-opus-4-7</code> · Platforma: Windows 11 + Git Bash · OneDrive sync.</p>
+    <p style="margin-top:18px"><a href="https://acenta.si">acenta.si</a> &nbsp;·&nbsp; <a href="mailto:podpora@acenta.si">podpora@acenta.si</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
