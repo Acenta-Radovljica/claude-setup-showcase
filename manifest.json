@@ -1,0 +1,301 @@
+{
+  "site": {
+    "title": "Claude Code Setup · Maks",
+    "tagline": "Moj celoten Claude Code ekosistem — skilli, agenti, MCP serverji, hooki in pravila.",
+    "intro": "Vse, kar poganja moje delo v Claude Code, na enem mestu. Kar je označeno kot <strong>javno</strong>, si lahko namestiš z enim ukazom. Kar je označeno kot <strong>interno</strong>, je vezano na podatke strank ali našo infrastrukturo, zato datoteke ne gredo v ta repo — vidiš samo, kaj orodje počne.",
+    "owner": "Maks · Acenta.si",
+    "repo": "Acenta-Radovljica/claude-setup-showcase",
+    "branch": "main"
+  },
+
+  "categories": {
+    "ads": { "label": "Google Ads & merjenje", "icon": "📈" },
+    "content": { "label": "Vsebina & copywriting", "icon": "✍️" },
+    "design": { "label": "Dizajn & frontend", "icon": "🎨" },
+    "web": { "label": "Splet, scraping & mediji", "icon": "🌐" },
+    "infra": { "label": "Infrastruktura & deploy", "icon": "🚀" },
+    "finance": { "label": "Finance & interni sistemi", "icon": "💰" },
+    "think": { "label": "Planiranje & razmišljanje", "icon": "🧠" }
+  },
+
+  "skills": {
+    "ads": {
+      "tier": "internal", "cat": "ads", "icon": "📊",
+      "blurb": "Operativna analiza Google Ads iskalnih izrazov iz CSV izvozov: predlog negative keywords, pregled več računov naenkrat in tedenski monitor s primerjavo prejšnjega tedna.",
+      "why": "Vsebuje imena strank in mapiranje na račune."
+    },
+    "animation-analyzer": { "tier": "public", "cat": "design", "icon": "🎞️" },
+    "asset-studio": { "tier": "public", "cat": "design", "icon": "🎨" },
+    "audit-claude": { "tier": "public", "cat": "think", "icon": "🔍" },
+    "auto": {
+      "tier": "internal", "cat": "infra", "icon": "⚙️",
+      "blurb": "Wizard za postavitev ponavljajočih se opravil brez Make.com — Windows Task Scheduler, /schedule, /loop in hooki. Od ideje do delujočega urnika v enem pogovoru.",
+      "why": "Recepti so vezani na agencijske procese in imena strank."
+    },
+    "brand-system": { "tier": "public", "cat": "design", "icon": "🏷️" },
+    "build-survey": { "tier": "public", "cat": "think", "icon": "📋" },
+    "ckm-banner-design": { "tier": "public", "cat": "design", "icon": "🖼️" },
+    "ckm-brand": { "tier": "public", "cat": "design", "icon": "🏷️" },
+    "ckm-design": { "tier": "public", "cat": "design", "icon": "🎨" },
+    "ckm-design-system": { "tier": "public", "cat": "design", "icon": "🧩" },
+    "ckm-slides": { "tier": "public", "cat": "design", "icon": "📑" },
+    "ckm-ui-styling": { "tier": "public", "cat": "design", "icon": "💅" },
+    "content-generator": {
+      "tier": "internal", "cat": "content", "icon": "🗓️",
+      "blurb": "Vsebinski motor za kliente: onboarding iz njihove spletne strani prek Firecrawla, nato cel mesečni social plan (Facebook-first) z AI briefi za slike in generacijo vizualov.",
+      "why": "Vsebuje konfiguracije in glas posameznih strank."
+    },
+    "content-skill-graph": { "tier": "public", "cat": "content", "icon": "🕸️" },
+    "continue": { "tier": "public", "cat": "think", "icon": "⏭️" },
+    "demo-page": {
+      "tier": "internal", "cat": "web", "icon": "🪄",
+      "blurb": "Iz URL-ja podjetja s slabo spletno stranjo v enem zagonu zgradi cinematic demo stran, klikalen booking in interni dashboard — da potencialna stranka vidi, kako bi lahko izgledalo.",
+      "why": "Vsebuje prodajni kontekst, osnutke hladnih emailov in interne domene."
+    },
+    "deploy": {
+      "tier": "internal", "cat": "infra", "icon": "🚀",
+      "blurb": "Deploy in redeploy aplikacij na Dokploy/Hetzner prek MCP — z SSH-git vzorcem, razliko med deploy in redeploy (klasična past) ter popravkom Let's Encrypt certifikata.",
+      "why": "Vsebuje naslove strežnikov in interne domene."
+    },
+    "design": {
+      "tier": "internal", "cat": "design", "icon": "🎨",
+      "blurb": "Acenta design system: skupne komponente, page templati in generator HTML deckov, da vse agencijske strani govorijo isti vizualni jezik.",
+      "why": "Vsebuje interne primere s strankami."
+    },
+    "design-prompts": { "tier": "public", "cat": "design", "icon": "🖌️" },
+    "design-taste-frontend": { "tier": "public", "cat": "design", "icon": "✨" },
+    "devtakeover": { "tier": "public", "cat": "think", "icon": "🏗️" },
+    "emil-design-eng": { "tier": "public", "cat": "design", "icon": "🔬" },
+    "eod": {
+      "tier": "internal", "cat": "finance", "icon": "📝",
+      "blurb": "Iz Claude Code transkriptov sestavi povzetek dnevnega dela po klientih in projektih, v tonu, primernem za Monday.com ali poročilo vodstvu.",
+      "why": "Grupira po imenih strank."
+    },
+    "explain-code": { "tier": "public", "cat": "think", "icon": "📚" },
+    "firecrawl": { "tier": "public", "cat": "web", "icon": "🔥" },
+    "firecrawl-website-design-clone": { "tier": "public", "cat": "web", "icon": "🧬" },
+    "gads": {
+      "tier": "internal", "cat": "ads", "icon": "🎯",
+      "blurb": "Celoten Google Ads pipeline za kliente pod MCC: onboarding, keyword research, gradnja kampanj, GTM cilji, launch, audit, optimizacija, poročilo. Vsako pisanje gre prek enega samega kanala po zaporedju dry-run → potrditev → izvedba → preverba.",
+      "why": "Vsebuje mapiranje klient → Google Ads račun, MCC ID in klientske specifike."
+    },
+    "google-ads-report": {
+      "tier": "internal", "cat": "ads", "icon": "📄",
+      "blurb": "Iz izvoženih Google Ads CSV podatkov pripravi profesionalen HTML/PDF dokument s strukturo kampanje za stranko.",
+      "why": "Primeri in predloge vsebujejo prave klientske račune."
+    },
+    "google-ads-search": {
+      "tier": "internal", "cat": "ads", "icon": "🔎",
+      "blurb": "Specialist za Google Ads Search: gradnja nove kampanje, optimizacija obstoječe, audit in priprava poročila. Predhodnik širšega /gads pipelina.",
+      "why": "Vsebuje klientske primere in nastavitve računov."
+    },
+    "grill-me": { "tier": "public", "cat": "think", "icon": "🔥" },
+    "gtm-cilji": {
+      "tier": "internal", "cat": "ads", "icon": "🏁",
+      "blurb": "Postavi konverzijsko sledenje prek Google Tag Managerja — kliki na telefon in e-mail, oddaje obrazcev, zunanje rezervacije — poimenovano po poslovnih področjih, v GA4 in nato uvoz v Google Ads. Vključuje generacijo uvoznega container JSON-a in protokol testiranja v Preview.",
+      "why": "Vsebuje klientske container ID-je in primere."
+    },
+    "high-end-visual-design": { "tier": "public", "cat": "design", "icon": "💎" },
+    "hotel-report": { "tier": "public", "cat": "content", "icon": "🏨" },
+    "image-director": { "tier": "public", "cat": "design", "icon": "🖼️" },
+    "imagegen-frontend-web": { "tier": "public", "cat": "design", "icon": "🏞️" },
+    "impeccable": { "tier": "public", "cat": "design", "icon": "🪞" },
+    "industrial-brutalist-ui": { "tier": "public", "cat": "design", "icon": "🏭" },
+    "kalkulator-pohistvo": {
+      "tier": "internal", "cat": "finance", "icon": "🪑",
+      "blurb": "Kalkulacija lastne cene pohištvenega izdelka iz načrta ali skice: razstavi izdelek na elemente in generira Excel z živimi formulami.",
+      "why": "Uporablja klientove cenike in normative."
+    },
+    "landing-page-builder": { "tier": "public", "cat": "design", "icon": "🛬" },
+    "mesecni-rezultat": {
+      "tier": "internal", "cat": "finance", "icon": "📊",
+      "blurb": "Mesečno poročilo uspešnosti po stroškovnih mestih: prihodki iz Metakocke, stroški iz računovodskega izvoza, nefakturirano iz monday. S čuvaji, ki postopek ustavijo, če kontrola najde nepojasnjeno razliko.",
+      "why": "Interni finančni podatki agencije."
+    },
+    "meta-porocilo": {
+      "tier": "internal", "cat": "ads", "icon": "📘",
+      "blurb": "HTML poročilo o postavljeni Meta (Facebook/Instagram) kampanji za stranko: vdelana slika oglasa, povzetek nastavitev, ciljna publika, kreativa in merjenje.",
+      "why": "Predloga vsebuje prave klientske kampanje."
+    },
+    "minimalist-ui": { "tier": "public", "cat": "design", "icon": "⬜" },
+    "pda": { "tier": "public", "cat": "think", "icon": "🧩" },
+    "pdf": { "tier": "public", "cat": "infra", "icon": "📄" },
+    "ponudba": {
+      "tier": "internal", "cat": "finance", "icon": "📑",
+      "blurb": "Iz transkripta kickoff sestanka sestavi ponudbo — najprej Word za pregled, po potrditvi PDF.",
+      "why": "Vsebuje cenovno logiko in pakete agencije."
+    },
+    "premortem": { "tier": "public", "cat": "think", "icon": "⚠️" },
+    "prompt-writer": { "tier": "public", "cat": "think", "icon": "✍️" },
+    "provizije": {
+      "tier": "internal", "cat": "finance", "icon": "💰",
+      "blurb": "Mesečni obračun provizij za komercialiste iz Metakocka RVC izvoza, z validiranim motorjem in vodenim pregledom mejnih vrstic.",
+      "why": "Vsebuje šifre, stopnje in interne finančne podatke."
+    },
+    "reason-business": { "tier": "public", "cat": "think", "icon": "🧠" },
+    "redesign-existing-projects": { "tier": "public", "cat": "design", "icon": "♻️" },
+    "seo": {
+      "tier": "internal", "cat": "web", "icon": "🔍",
+      "blurb": "Yoast on-page SEO za WordPress: generira slovenska meta polja (focus keyphrase, SEO naslov, meta opis), vodi vnos in obvezno preveri rezultat v živo prek curl.",
+      "why": "Vsebuje konkretne klientske URL-je."
+    },
+    "transcreate": { "tier": "public", "cat": "content", "icon": "🌍" },
+    "ui-ux-pro-max": { "tier": "public", "cat": "design", "icon": "📐" },
+    "video-watch": { "tier": "public", "cat": "web", "icon": "🎬" },
+    "visual-plan": { "tier": "public", "cat": "think", "icon": "🗺️" },
+    "visual-recap": { "tier": "public", "cat": "think", "icon": "🧾" },
+    "visualize": { "tier": "public", "cat": "design", "icon": "📊" },
+    "write-email": { "tier": "public", "cat": "content", "icon": "✉️" },
+    "zdravje": {
+      "tier": "internal", "cat": "infra", "icon": "🩺",
+      "blurb": "Health check vseh produkcijskih aplikacij v eni potezi: strogi curl, SSL certifikat in Dokploy status → tabela ✅/❌. Odpravi ročno preverjanje app za appom.",
+      "why": "Vsebuje naslove strežnikov in seznam internih aplikacij."
+    }
+  },
+
+  "agents": {
+    "claude-code-advisor": { "tier": "public", "icon": "🧭" },
+    "claude-code-advisor-acenta": { "tier": "public", "icon": "🧭", "tags": ["Acenta različica"] },
+    "client-brief-analyzer": {
+      "tier": "internal", "icon": "📋",
+      "blurb": "Iz surovega briefa, emaila ali alinej strukturira brief in ga preda naprej v ad-copy, caption, blog-brief ali poročilo.",
+      "why": "Vsebuje prave klientske briefe."
+    },
+    "copywriting-storytelling": { "tier": "public", "icon": "🖋️" },
+    "copywriting-storytelling-acenta": { "tier": "public", "icon": "🖋️", "tags": ["Acenta različica"] },
+    "design-turizem-sl": {
+      "tier": "internal", "icon": "🏔️",
+      "blurb": "UI/UX pregled slovenskih turističnih in gostinskih strani — topel, gostoljuben estetski jezik za hotele, terme in turistične agencije.",
+      "why": "Vsebuje konkretne klientske primere."
+    },
+    "design-visionary": { "tier": "public", "icon": "👁️" },
+    "design-visionary-acenta": { "tier": "public", "icon": "👁️", "tags": ["Acenta različica"] },
+    "email-marketing-strategist": { "tier": "public", "icon": "📧" },
+    "email-marketing-strategist-acenta": { "tier": "public", "icon": "📧", "tags": ["Acenta različica"] },
+    "geo-strategist": {
+      "tier": "internal", "icon": "🛰️",
+      "blurb": "Resen GEO načrt (vidnost v AI odgovorih): najprej izmeri baseline, preveri vsako trditev v živo, nato pripravi po vplivu razvrščen plan.",
+      "why": "Vsebuje klientske meritve."
+    },
+    "native-transcreator": { "tier": "public", "icon": "🌐" },
+    "session-miner": { "tier": "public", "icon": "⛏️" },
+    "verifier": { "tier": "public", "icon": "🔬" },
+    "video-analyst": { "tier": "public", "icon": "🎥" },
+    "web-operator": { "tier": "public", "icon": "🕸️" }
+  },
+
+  "commands": {
+    "ad-copy": { "tier": "public", "icon": "📣" },
+    "blog-brief": { "tier": "public", "icon": "📰" },
+    "caption": { "tier": "public", "icon": "💬" },
+    "preglej": { "tier": "public", "icon": "✅" },
+    "razlozi": { "tier": "public", "icon": "🎓" },
+    "report": { "tier": "public", "icon": "📊" }
+  },
+
+  "rules": {
+    "design-and-build.md": {
+      "tier": "public", "icon": "📐",
+      "title": "Prototip najprej, zvestoba vedno",
+      "summary": "Vsak večji ali dizajnersko zahteven projekt gre skozi HTML prototip, preden nastane produkcijska koda. Ko je dizajn potrjen, je zavezujoča specifikacija: nobene mrtve tipke, nobene skrite spremembe postavitve, obvezen design diff pred 'končano'."
+    },
+    "html-projects.md": {
+      "tier": "public", "icon": "🧾",
+      "title": "Pravila za HTML projekte",
+      "summary": "Konvencije za samostojne HTML datoteke: barve prek CSS spremenljivk, delovanje v svetli in temni temi, brez zunanjih odvisnosti, kjer niso nujne."
+    },
+    "visual-plan-recap.md": {
+      "tier": "public", "icon": "🗺️",
+      "title": "Samodejni /visual-plan in /visual-recap",
+      "summary": "Pred večjim delom se sproži vizualni načrt kot odobritvena točka, po zaključku vizualni povzetek. Velja za katerokoli delo, ne samo kodo."
+    }
+  },
+
+  "hooks": {
+    "confirm-git.sh": {
+      "tier": "public", "icon": "🛑",
+      "title": "confirm-git",
+      "summary": "PreToolUse hook, ki prestreže nevarne git ukaze (force push, hard reset, brisanje vej) in zahteva potrditev, tudi kadar Claude teče v bypass-permissions načinu."
+    },
+    "memory-maintenance.sh": {
+      "tier": "public", "icon": "🧠",
+      "title": "memory-maintenance",
+      "summary": "Vzdržuje datotečni spomin: skrbi, da je indeks spomina sinhroniziran z dejanskimi zapisi in da zastareli vnosi ne ostanejo v kontekstu."
+    },
+    "discord.sh": {
+      "tier": "internal", "icon": "💬",
+      "title": "discord",
+      "summary": "Skripta za branje in objavljanje v ekipne Discord kanale prek bota.",
+      "why": "Vezana na naš strežnik in bot token."
+    },
+    "buzz-console-hider.ps1": {
+      "tier": "internal", "icon": "🐝",
+      "title": "buzz-console-hider",
+      "summary": "Skrije konzolno okno pri objavljanju v ekipni chat Buzz.",
+      "why": "Vezana na zasebni ključ in relay ekipe."
+    }
+  },
+
+  "mcp": [
+    { "name": "context7", "tier": "public", "icon": "📚", "desc": "Sveža dokumentacija knjižnic in frameworkov, namesto ugibanja iz spomina modela." },
+    { "name": "github", "tier": "public", "icon": "🐙", "desc": "Repoziti, PR-ji, issue-ji, iskanje po kodi in commitih." },
+    { "name": "playwright", "tier": "public", "icon": "🎭", "desc": "Pravi brskalnik: klikanje, screenshoti, preverjanje sprememb v živo." },
+    { "name": "firecrawl (CLI)", "tier": "public", "icon": "🔥", "desc": "Scraping in iskanje po spletu, ki renderira JavaScript in vrne slike ter screenshote. Privzeto orodje za branje spleta namesto WebFetch." },
+    { "name": "brave-search", "tier": "public", "icon": "🦁", "desc": "Spletno iskanje prek Brave Search API." },
+    { "name": "google-ads", "tier": "public", "icon": "📈", "desc": "Google Ads API samo za branje: GAQL poizvedbe po računih." },
+    { "name": "meta-ads", "tier": "public", "icon": "📘", "desc": "Meta (Facebook/Instagram) oglaševalski računi, kampanje in insighti." },
+    { "name": "openpanel", "tier": "public", "icon": "📊", "desc": "Analitika obiska spletne strani plus Google Search Console podatki." },
+    { "name": "higgsfield", "tier": "public", "icon": "✨", "desc": "Generacija slik, videov, zvoka in 3D modelov." },
+    { "name": "acenta-ads", "tier": "internal", "icon": "🗂️", "desc": "Lokalni MCP za branje izvoženih Google Ads podatkov po klientih.", "why": "Bere klientske izvoze z diska." },
+    { "name": "dokploy", "tier": "internal", "icon": "🚢", "desc": "Upravljanje in deploy produkcijskih aplikacij agencije.", "why": "Vezan na naš strežnik." },
+    { "name": "dokploy-personal", "tier": "internal", "icon": "🚢", "desc": "Ločen Dokploy za osebne in NativeAI projekte.", "why": "Vezan na zaseben strežnik." },
+    { "name": "nativeai-os", "tier": "internal", "icon": "🧩", "desc": "Interni sistem NativeAI: projekti, taski, GTM podatki.", "why": "Zahteva interno avtentikacijo." }
+  ],
+
+  "connectors": [
+    "monday.com", "Metakocka", "Canva", "Microsoft 365", "Meta Ads", "Postiz", "Notion", "Asana"
+  ],
+
+  "claudeMd": [
+    {
+      "icon": "🧱",
+      "title": "Standard kakovosti",
+      "summary": "Raje 40 % specifikacije, dostavljene v celoti in transparentno, kot 100 % na pol pečeno s skritimi luknjami. Pred 'končano' gre vsak deliverable skozi seznam DONE / PRESKOČENO / NI NAREJENO."
+    },
+    {
+      "icon": "🔎",
+      "title": "Preveri, preden rečeš končano",
+      "summary": "Vsak artefakt (datoteka, stran, slika, dokument) se pred zaključkom odpre in pogleda. 'Orodje je vrnilo uspeh' ni preverba."
+    },
+    {
+      "icon": "🌐",
+      "title": "Web-check pred trditvijo",
+      "summary": "Cene, imena modelov, verzije, benchmarki in vse s 'najnovejši' v sebi gre najprej skozi živo iskanje. Nikoli spomin kot dejstvo."
+    },
+    {
+      "icon": "🛑",
+      "title": "Ko se zatakne, se ustavi",
+      "summary": "Če isti pristop dvakrat pade, ni petega poskusa istega. Mapiraj vplive, poglej, kako je bilo rešeno prej, in predlagaj tri res različne poti."
+    },
+    {
+      "icon": "⚖️",
+      "title": "Odločitve kot možnosti",
+      "summary": "Vsaka netrivialna odločitev pride kot 2–4 možnosti s prednostmi in slabostmi za mojo konkretno situacijo, plus eksplicitno priporočilo."
+    },
+    {
+      "icon": "🎓",
+      "title": "Kako me učiti kodo",
+      "summary": "Najprej ZAKAJ, potem KAJ. Majhni, poganjljivi primeri. 10 vrstic, ki jih razumem, je boljših od 50, ki jih ne. Vsak nepoznan pojem dobi enostavčno razlago."
+    },
+    {
+      "icon": "🇸🇮",
+      "title": "Jezik in stil",
+      "summary": "Privzeti jezik izhodov je slovenščina, komentarji v kodi angleško. Brez pomišljajev kot ločil in brez dramatičnih fragmentov — oboje izda AI pisavo."
+    },
+    {
+      "icon": "🤝",
+      "title": "Codex kot drugo mnenje",
+      "summary": "Pred visokotveganimi odločitvami (arhitektura, varnost, nepovraten poseg, večji refactor) jih najprej red-teama Codex, nato se kritika odprto uskladi."
+    }
+  ]
+}

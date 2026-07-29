@@ -1,0 +1,15 @@
+{
+  "_": "Predloga za varnostni gate. Prava datoteka živi ZUNAJ tega repozitorija, na ~/.claude/showcase-denylist.json (ali kjer kaže SHOWCASE_DENYLIST), ker je sam seznam imen strank, naslovov strežnikov in ID-jev občutljiv podatek. Brez nje se build ne zažene.",
+  "hard": [
+    { "label": "IP streznika", "pattern": "\\b(?:203\\.0\\.113\\.10|198\\.51\\.100\\.7)\\b", "flags": "g" },
+    { "label": "ID racuna", "pattern": "\\b1234567890\\b", "flags": "g" },
+    { "label": "customer ID", "pattern": "\\bcid\\s+\\d{9,}\\b|customer[_-]?id[\"'\\s:=]+\\d{9,}", "flags": "gi" },
+    { "label": "interna domena", "pattern": "\\b[a-z0-9-]+\\.interno\\.primer\\.si\\b", "flags": "gi" },
+    { "label": "ime stranke", "pattern": "\\b(?:PrimerStranka|DrugaStranka)\\b", "flags": "gi" },
+    { "label": "skrivnost", "pattern": "\\bghp_[A-Za-z0-9]{20,}|\\bsk-ant-[A-Za-z0-9-]{24,}|\\bnsec1[a-z0-9]{20,}|\\bBearer\\s+[A-Za-z0-9._-]{24,}", "flags": "g" }
+  ],
+  "soft": [
+    { "label": "dvoumno ime", "pattern": "\\b(?:beseda-ki-je-lahko-tudi-navadna)\\b", "flags": "gi" },
+    { "label": "pot do tokena", "pattern": "api-key|BOT_TOKEN|PRIVATE_KEY", "flags": "g" }
+  ]
+}
