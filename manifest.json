@@ -139,6 +139,11 @@
       "blurb": "Yoast on-page SEO za WordPress: generira slovenska meta polja (focus keyphrase, SEO naslov, meta opis), vodi vnos in obvezno preveri rezultat v živo prek curl.",
       "why": "Vsebuje konkretne klientske URL-je."
     },
+    "sh-opisi": {
+      "tier": "internal", "cat": "content", "icon": "🏔️",
+      "blurb": "Cel postopek za opise regij in krajev na turističnem portalu: meritev žive ponudbe, pisanje po izmerjenem jezikovnem merilu referenčnih besedil, kontrola vsakega cilja povezave, jezikovni pregled prek Codexa, pregledna stran kot gate in vpis z varnostno kopijo. Sproti vodi seznam idej za nove blog zapise.",
+      "why": "Vsebuje klientovo domeno, strukturo portala, naročnikova navodila in imena."
+    },
     "transcreate": { "tier": "public", "cat": "content", "icon": "🌍" },
     "ui-ux-pro-max": { "tier": "public", "cat": "design", "icon": "📐" },
     "video-watch": { "tier": "public", "cat": "web", "icon": "🎬" },

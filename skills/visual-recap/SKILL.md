@@ -1,6 +1,6 @@
 ---
 name: visual-recap
-description: Turn the result of completed work into an interactive visual recap (HTML) reviewed in the local Lavish Editor. Works for ANY work, not just code: a code diff (working tree, PR, ref range) becomes file map + annotated diffs + schema/API deltas + before/after wireframes for UI changes; non-code work becomes narrative + comparison + decisions + a wireframe only when there is a visual deliverable. Use after finishing a substantial work unit, when the user says "recap this", "show me what changed", "visual recap", "recap this PR/branch", or proactively after a multi-file diff or a meaningful set of documents/decisions. Renders via a Sonnet subagent to keep it cheap and context-light.
+description: "Turn the result of completed work into an interactive visual recap (HTML) reviewed in the local Lavish Editor. Works for ANY work, not just code: a code diff (working tree, PR, ref range) becomes file map + annotated diffs + schema/API deltas + before/after wireframes for UI changes; non-code work becomes narrative + comparison + decisions + a wireframe only when there is a visual deliverable. Use after finishing a substantial work unit, when the user says \"recap this\", \"show me what changed\", \"visual recap\", \"recap this PR/branch\", or proactively after a multi-file diff or a meaningful set of documents/decisions. Renders via a Sonnet subagent to keep it cheap and context-light."
 ---
 
 # Visual Recap
