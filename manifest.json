@@ -73,6 +73,7 @@
     },
     "explain-code": { "tier": "public", "cat": "think", "icon": "📚" },
     "firecrawl": { "tier": "public", "cat": "web", "icon": "🔥" },
+    "first-principles": { "tier": "public", "cat": "think", "icon": "🔬" },
     "firecrawl-website-design-clone": { "tier": "public", "cat": "web", "icon": "🧬" },
     "gads": {
       "tier": "internal", "cat": "ads", "icon": "🎯",

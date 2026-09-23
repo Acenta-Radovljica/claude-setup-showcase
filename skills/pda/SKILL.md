@@ -28,5 +28,5 @@ Na koncu:
 - **Začni tukaj:** ena sama MVA, s katero naj uporabnik začne v naslednjih 15 minutah.
 - **Odvisnosti:** če kaj mora biti narejeno pred čim drugim, povej.
 
-## Ton (začetnik)
-Brez žargona. Naloge ubesedi kot dejanja ("Napiši...", "Preizkusi...", "Pokliči..."), ne kot abstraktne teme. Realistične ocene časa — raje precени navzgor.
+## Ton
+Brez žargona. Naloge ubesedi kot dejanja ("Napiši...", "Preizkusi...", "Pokliči..."), ne kot abstraktne teme. Realistične ocene časa — raje preceni navzgor.
