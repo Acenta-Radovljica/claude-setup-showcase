@@ -148,12 +148,12 @@ Either way, never call an image API or Gemini; prompts render in Codex / ChatGPT
 This skill is the single front door for image prompts. **One prompt, then pick where to render it.** The same `prompt.md` drives whichever engine you choose; you do not rewrite the prompt per model.
 
 - **Codex / GPT Image 2 (default)** — render via Codex; the STATUS.md / `render.png` convention above applies.
-- **Higgsfield → GPT Image 2 or Nano Banana** — same prompt, pick either model in Higgsfield.
-- The policy line that actually matters: **no `GEMINI_API_KEY`, no direct `gemini-*` image API calls.** Nano Banana is Google's image model, but reached *through Higgsfield* it is a platform render, not a direct Gemini key, so it is fine here. Never wire a Gemini API key just to generate an image.
+- **Magnific** (MCP `magnific`): same prompt, for edits, upscales, or when Codex is unavailable.
+- The policy line that actually matters: **no `GEMINI_API_KEY`, no direct `gemini-*` image API calls.** Never wire a Gemini API key just to generate an image.
 
 For prompt **craft** (premium, conversion-aware web reference imagery), pull the rules from the **`imagegen-frontend-web`** skill. It is a craft reference, not a second prompt store: prompts still live and version here.
 
-**Video is out of scope here.** Image-to-video / text-to-video is a different prompt type and a different engine (Kling via Higgsfield, or Veo 3 via a Gemini render-handoff). Handle it in the build/pipeline stage, not in this skill.
+**Video is out of scope here.** Image-to-video / text-to-video is a different prompt type and a different engine (for example Magnific video tools). Handle it in the build/pipeline stage, not in this skill.
 
 ## Codex handoff
 

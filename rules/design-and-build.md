@@ -25,12 +25,12 @@ Applies to every prototype screen, wireframe, or mockup (HTML spike, before/afte
 1. **Real content, never lorem or gray bars.** Real labels, counts, dates, names, button text grounded in the actual screen. Placeholder bars belong only in a genuine loading/skeleton state.
 2. **Modify, do not redesign.** When changing an existing screen, reproduce its current layout and footprint first, then change only the delta and call it out. Match the real app's density, sidebars, toolbars, overflow menus, chrome. Do not restack the page into a new layout.
 3. **Before/after must be comparable.** Keep unchanged controls present in both states so the reviewer sees exactly what moved. Same frame size, padding, density on both sides. Put the new affordance where the implementation actually puts it. Name states with a column/section header, never a pill baked into the screen.
-4. **Theme-safe color.** Drive every custom color through CSS variables/tokens, never hardcoded hex, so light and dark both render. Pairs with `html-authoring.md`.
+4. **Theme-safe color.** Drive every custom color through CSS variables/tokens, never hardcoded hex, so light and dark both render. Pairs with `html-projects.md`.
 5. **Full-width chrome, pinned bottom bars.** Top bars and toolbars are full-width flex rows with a spacer pushing trailing actions right. Bottom bars pin to the frame bottom (flex column at `height:100%`, scrolling body `flex:1`, bar last child).
 6. **Fill the frame, keep labels short, do not wrap single-line rows.** `white-space: nowrap` (plus ellipsis) on toolbars, tab rails, breadcrumbs, file/branch names. Shorten copy rather than letting it wrap.
 7. **No decorative shadows** unless the real product UI already has them. Mockups read as flat, bordered surfaces.
 8. **Zoom in on sub-surfaces, do not redraw the page.** For a popover, menu, dialog, or toast: show the full screen once, then a separate small frame with only that sub-surface at its real footprint.
-9. **Inspect before handoff.** Open the rendered screen and look at it (overlap, clipping, contrast, empty bands, wrapped labels) before asking for approval. This is Part 2 of `completion-discipline.md` applied to mockups.
+9. **Inspect before handoff.** Open the rendered screen and look at it (overlap, clipping, contrast, empty bands, wrapped labels) before asking for approval.
 
 ### Decide the hard-to-reverse bets first
 
@@ -73,4 +73,4 @@ Carry the locked design into the implementation plan (`writing-plans`) and the p
 
 ## Origin
 
-Merged 21. 7. 2026. Part 1 added 4. 6. 2026 (NativeAI OS design session; landing-page work proved HTML-mockup-first converges faster than spec-only review), extended 18. 6. 2026 with the quality bar and hard-to-reverse bets (distilled from Steve Sewell's `/visual-plan`). Part 2 added 23. 6. 2026 after the Personal OS Money pillar build diverged from the approved Lavish design (restructured markup, class names without CSS, dead filters, missing add-expense). Incident narratives: `~/.claude/CHANGELOG-rules.md`. Reference runs: `~/Domain/Personal/ai-tooling/my-claude-setup/`.
+Merged 21. 7. 2026. Part 1 added 4. 6. 2026 (NativeAI OS design session; landing-page work proved HTML-mockup-first converges faster than spec-only review), extended 18. 6. 2026 with the quality bar and hard-to-reverse bets (distilled from Steve Sewell's `/visual-plan`). Part 2 added 23. 6. 2026 after the Personal OS Money pillar build diverged from the approved Lavish design (restructured markup, class names without CSS, dead filters, missing add-expense).

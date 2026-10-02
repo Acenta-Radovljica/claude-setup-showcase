@@ -20,6 +20,16 @@ proactively, not only when the slash command is typed. This extends `design-and-
 - When unsure on a borderline case, ASK once ("want a visual plan/recap for this?") rather than
   forcing a heavy artifact.
 
+## Content, not code (Maks, 2. 10. 2026: "dj men skos na tak način")
+
+Every plan or recap shows the SUBSTANCE Maks decides on, even when the work is code:
+the actual texts the user/customer will see (questions, answers, screens, emails), what
+changes for them, a concrete before/after example, and the decisions with a recommended
+default. Do NOT render file trees, code diffs, internal formulas/scoring tables, or code-level
+risks unless he explicitly asks; technical scope gets at most one plain sentence. Write it in
+plain Slovenian for a non-technical decision maker. The code add-ons in `artifact-core.md`
+(`fileTree`, `keyChanges`, `dataModel`, `apiEndpoint`) are off by default for him.
+
 ## Off switches
 
 - Global: environment variable `VISUAL_AUTO=off` disables auto-invocation entirely (the slash
