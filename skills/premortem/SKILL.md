@@ -73,7 +73,7 @@ A good premortem is specific and uncomfortable. A bad one is generic and reassur
 
 ## Escalation and rendering
 
-This is the fast, universal version. If the premortem exposes that the real problem is strategic (a venture with no validated demand, a wrong constraint, a positioning or pricing question that needs first-principles work), escalate to `/reason-business` for the heavier constraint-finding engine and feed it what the premortem surfaced.
+This is the fast, universal version. If the premortem exposes that the real problem is strategic (a venture with no validated demand, a wrong constraint, a positioning or pricing question that needs first-principles work), escalate to `/first-principles` and feed it what the premortem surfaced.
 
 Default to delivering the premortem inline. For a complex case with many interacting failures, or when the user will share it, offer to render it as a visual artifact via `/visual-plan` or a Lavish surface so the failures and the revised plan sit side by side.
 

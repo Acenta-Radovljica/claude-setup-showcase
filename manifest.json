@@ -19,27 +19,11 @@
   },
 
   "skills": {
-    "ads": {
-      "tier": "internal", "cat": "ads", "icon": "📊",
-      "blurb": "Operativna analiza Google Ads iskalnih izrazov iz CSV izvozov: predlog negative keywords, pregled več računov naenkrat in tedenski monitor s primerjavo prejšnjega tedna.",
-      "why": "Vsebuje imena strank in mapiranje na račune."
-    },
     "animation-analyzer": { "tier": "public", "cat": "design", "icon": "🎞️" },
     "asset-studio": { "tier": "public", "cat": "design", "icon": "🎨" },
     "audit-claude": { "tier": "public", "cat": "think", "icon": "🔍" },
-    "auto": {
-      "tier": "internal", "cat": "infra", "icon": "⚙️",
-      "blurb": "Wizard za postavitev ponavljajočih se opravil brez Make.com — Windows Task Scheduler, /schedule, /loop in hooki. Od ideje do delujočega urnika v enem pogovoru.",
-      "why": "Recepti so vezani na agencijske procese in imena strank."
-    },
     "brand-system": { "tier": "public", "cat": "design", "icon": "🏷️" },
     "build-survey": { "tier": "public", "cat": "think", "icon": "📋" },
-    "ckm-banner-design": { "tier": "public", "cat": "design", "icon": "🖼️" },
-    "ckm-brand": { "tier": "public", "cat": "design", "icon": "🏷️" },
-    "ckm-design": { "tier": "public", "cat": "design", "icon": "🎨" },
-    "ckm-design-system": { "tier": "public", "cat": "design", "icon": "🧩" },
-    "ckm-slides": { "tier": "public", "cat": "design", "icon": "📑" },
-    "ckm-ui-styling": { "tier": "public", "cat": "design", "icon": "💅" },
     "content-generator": {
       "tier": "internal", "cat": "content", "icon": "🗓️",
       "blurb": "Vsebinski motor za kliente: onboarding iz njihove spletne strani prek Firecrawla, nato cel mesečni social plan (Facebook-first) z AI briefi za slike in generacijo vizualov.",
@@ -80,16 +64,6 @@
       "blurb": "Celoten Google Ads pipeline za kliente pod MCC: onboarding, keyword research, gradnja kampanj, GTM cilji, launch, audit, optimizacija, poročilo. Vsako pisanje gre prek enega samega kanala po zaporedju dry-run → potrditev → izvedba → preverba.",
       "why": "Vsebuje mapiranje klient → Google Ads račun, MCC ID in klientske specifike."
     },
-    "google-ads-report": {
-      "tier": "internal", "cat": "ads", "icon": "📄",
-      "blurb": "Iz izvoženih Google Ads CSV podatkov pripravi profesionalen HTML/PDF dokument s strukturo kampanje za stranko.",
-      "why": "Primeri in predloge vsebujejo prave klientske račune."
-    },
-    "google-ads-search": {
-      "tier": "internal", "cat": "ads", "icon": "🔎",
-      "blurb": "Specialist za Google Ads Search: gradnja nove kampanje, optimizacija obstoječe, audit in priprava poročila. Predhodnik širšega /gads pipelina.",
-      "why": "Vsebuje klientske primere in nastavitve računov."
-    },
     "grill-me": { "tier": "public", "cat": "think", "icon": "🔥" },
     "gtm-cilji": {
       "tier": "internal", "cat": "ads", "icon": "🏁",
@@ -101,7 +75,6 @@
     "image-director": { "tier": "public", "cat": "design", "icon": "🖼️" },
     "imagegen-frontend-web": { "tier": "public", "cat": "design", "icon": "🏞️" },
     "impeccable": { "tier": "public", "cat": "design", "icon": "🪞" },
-    "industrial-brutalist-ui": { "tier": "public", "cat": "design", "icon": "🏭" },
     "kalkulator-pohistvo": {
       "tier": "internal", "cat": "finance", "icon": "🪑",
       "blurb": "Kalkulacija lastne cene pohištvenega izdelka iz načrta ali skice: razstavi izdelek na elemente in generira Excel z živimi formulami.",
@@ -118,7 +91,6 @@
       "blurb": "HTML poročilo o postavljeni Meta (Facebook/Instagram) kampanji za stranko: vdelana slika oglasa, povzetek nastavitev, ciljna publika, kreativa in merjenje.",
       "why": "Predloga vsebuje prave klientske kampanje."
     },
-    "minimalist-ui": { "tier": "public", "cat": "design", "icon": "⬜" },
     "pda": { "tier": "public", "cat": "think", "icon": "🧩" },
     "pdf": { "tier": "public", "cat": "infra", "icon": "📄" },
     "ponudba": {
@@ -133,8 +105,6 @@
       "blurb": "Mesečni obračun provizij za komercialiste iz Metakocka RVC izvoza, z validiranim motorjem in vodenim pregledom mejnih vrstic.",
       "why": "Vsebuje šifre, stopnje in interne finančne podatke."
     },
-    "reason-business": { "tier": "public", "cat": "think", "icon": "🧠" },
-    "redesign-existing-projects": { "tier": "public", "cat": "design", "icon": "♻️" },
     "seo": {
       "tier": "internal", "cat": "web", "icon": "🔍",
       "blurb": "Yoast on-page SEO za WordPress: generira slovenska meta polja (focus keyphrase, SEO naslov, meta opis), vodi vnos in obvezno preveri rezultat v živo prek curl.",
@@ -161,23 +131,19 @@
 
   "agents": {
     "claude-code-advisor": { "tier": "public", "icon": "🧭" },
-    "claude-code-advisor-acenta": { "tier": "public", "icon": "🧭", "tags": ["Acenta različica"] },
     "client-brief-analyzer": {
       "tier": "internal", "icon": "📋",
       "blurb": "Iz surovega briefa, emaila ali alinej strukturira brief in ga preda naprej v ad-copy, caption, blog-brief ali poročilo.",
       "why": "Vsebuje prave klientske briefe."
     },
     "copywriting-storytelling": { "tier": "public", "icon": "🖋️" },
-    "copywriting-storytelling-acenta": { "tier": "public", "icon": "🖋️", "tags": ["Acenta različica"] },
     "design-turizem-sl": {
       "tier": "internal", "icon": "🏔️",
       "blurb": "UI/UX pregled slovenskih turističnih in gostinskih strani — topel, gostoljuben estetski jezik za hotele, terme in turistične agencije.",
       "why": "Vsebuje konkretne klientske primere."
     },
     "design-visionary": { "tier": "public", "icon": "👁️" },
-    "design-visionary-acenta": { "tier": "public", "icon": "👁️", "tags": ["Acenta različica"] },
     "email-marketing-strategist": { "tier": "public", "icon": "📧" },
-    "email-marketing-strategist-acenta": { "tier": "public", "icon": "📧", "tags": ["Acenta različica"] },
     "geo-strategist": {
       "tier": "internal", "icon": "🛰️",
       "blurb": "Resen GEO načrt (vidnost v AI odgovorih): najprej izmeri baseline, preveri vsako trditev v živo, nato pripravi po vplivu razvrščen plan.",
@@ -191,12 +157,6 @@
   },
 
   "commands": {
-    "ad-copy": { "tier": "public", "icon": "📣" },
-    "blog-brief": { "tier": "public", "icon": "📰" },
-    "caption": { "tier": "public", "icon": "💬" },
-    "preglej": { "tier": "public", "icon": "✅" },
-    "razlozi": { "tier": "public", "icon": "🎓" },
-    "report": { "tier": "public", "icon": "📊" }
   },
 
   "rules": {

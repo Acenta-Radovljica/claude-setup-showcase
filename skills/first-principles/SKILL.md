@@ -1,6 +1,6 @@
 ---
 name: first-principles
-description: Reason through ANY problem from first principles instead of by analogy: a price or estimate, a tech/architecture choice, a process, a service offer, a "we always do it this way" assumption. Brakes first (is it worth it, or is analogy good enough?), separates form from function, decomposes into parts, labels every claim proven / standard / assumption, rebuilds only from what is proven, and ends with the single cheapest test of the biggest assumption. Use when the user says "first principles", "razstavi to", "iz česa je to sestavljeno", "a je to res tako", "zakaj to stane toliko", "razmisli od začetka", "/first-principles", or when a quoted price, effort estimate, or convention looks suspiciously large or unquestioned. For a venture/startup/GTM bet hand off to /reason-business; for an expensive-to-reverse plan add /premortem.
+description: Reason through ANY problem from first principles instead of by analogy: a price or estimate, a tech/architecture choice, a process, a service offer, a "we always do it this way" assumption. Brakes first (is it worth it, or is analogy good enough?), separates form from function, decomposes into parts, labels every claim proven / standard / assumption, rebuilds only from what is proven, and ends with the single cheapest test of the biggest assumption. Use when the user says "first principles", "razstavi to", "iz česa je to sestavljeno", "a je to res tako", "zakaj to stane toliko", "razmisli od začetka", "/first-principles", or when a quoted price, effort estimate, or convention looks suspiciously large or unquestioned. For an expensive-to-reverse plan add /premortem.
 ---
 
 # First Principles
@@ -64,6 +64,5 @@ Test: <najcenejši korak, ki jo preveri>
 - Do not overshoot into "automate everything." A human step that is the actual bottleneck of adoption (the approver, the operator who has to change a habit) is part of the physics, not waste.
 
 ## Handoffs
-- Venture, startup, GTM, "should I build this business" → `/reason-business` (DEEP), feeding it the decomposition.
 - The rebuilt plan is expensive or hard to reverse → `/premortem` on it before committing.
 - The user wants to be questioned rather than handed an answer → run steps 2 and 3 as questions, one at a time.
