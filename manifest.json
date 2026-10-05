@@ -95,8 +95,8 @@
     "pdf": { "tier": "public", "cat": "infra", "icon": "📄" },
     "ponudba": {
       "tier": "internal", "cat": "finance", "icon": "📑",
-      "blurb": "Iz transkripta kickoff sestanka sestavi ponudbo — najprej Word za pregled, po potrditvi PDF.",
-      "why": "Vsebuje cenovno logiko in pakete agencije."
+      "blurb": "Ponudba iz terminala prek naše aplikacije za ponudbe: brief ali transkript gre v aplikacijo, skill pokaže povzetek in opozorila, vnese popravke, odpre predogled in na koncu shrani PDF. Pravila ponudb ostanejo v aplikaciji, zato skill ne zastari.",
+      "why": "Kliče interno aplikacijo za ponudbe in piše v skupne mape podjetja."
     },
     "premortem": { "tier": "public", "cat": "think", "icon": "⚠️" },
     "prompt-writer": { "tier": "public", "cat": "think", "icon": "✍️" },
