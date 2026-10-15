@@ -75,6 +75,11 @@
     "image-director": { "tier": "public", "cat": "design", "icon": "🖼️" },
     "imagegen-frontend-web": { "tier": "public", "cat": "design", "icon": "🏞️" },
     "impeccable": { "tier": "public", "cat": "design", "icon": "🪞" },
+    "ocena": {
+      "tier": "internal", "cat": "finance", "icon": "⏱️",
+      "blurb": "Ocena ur za izdelavo ali prenovo spletne strani s prenosom vsebin stranke. Iz ene datoteke nastaneta priponka in sporočilo za šefa, zato se ure nikoli ne razhajajo. Ima kalibrirane faze, obvezno fazo za tehnični SEO in GEO, kratke prodajne vrstice ter varovala, ki opozorijo na manjkajočo fazo ali napačen seštevek.",
+      "why": "Vsebuje imena strank, interna merila ur in agencijska pravila za ocene."
+    },
     "kalkulator-pohistvo": {
       "tier": "internal", "cat": "finance", "icon": "🪑",
       "blurb": "Kalkulacija lastne cene pohištvenega izdelka iz načrta ali skice: razstavi izdelek na elemente in generira Excel z živimi formulami.",
